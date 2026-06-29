@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korea + China · Oct 1–22, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F4F5F9;
+    --card: #FFFFFF;
+    --primary: #5B4CFF;
+    --primary-light: #EEF0FF;
+    --food: #F97316;
+    --food-light: #FFF3EC;
+    --sleep: #3B82F6;
+    --sleep-light: #EFF6FF;
+    --transport: #6B7280;
+    --transport-light: #F3F4F6;
+    --activity: #8B5CF6;
+    --activity-light: #F3EEFF;
+    --honeymoon: #EC4899;
+    --honeymoon-light: #FDF2F8;
+    --confirmed: #10B981;
+    --pending: #F59E0B;
+    --open: #EF4444;
+    --text: #111827;
+    --muted: #6B7280;
+    --border: #E5E7EB;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Header */
+  .hero {
+    background: linear-gradient(135deg, #1e1b4b 0%, #6d28d9 45%, #db2777 100%);
+    color: white;
+    padding: 40px 24px 32px;
+    text-align: center;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .hero-dates {
+    font-size: 15px;
+    opacity: 0.85;
+    margin-bottom: 16px;
+  }
+  .hero-group {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .traveler-chip {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  /* Leg nav */
+  .day-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    display: flex;
+    overflow-x: auto;
+    gap: 2px;
+    scrollbar-width: none;
+  }
+  .day-nav::-webkit-scrollbar { display: none; }
+  .day-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    gap: 2px;
+  }
+  .day-nav a .day-num {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .day-nav a:hover, .day-nav a.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+  .day-nav a:hover .day-num, .day-nav a.active .day-num {
+    color: var(--primary);
+  }
+  .day-nav a.honeymoon-leg .day-num { color: var(--honeymoon); }
+  .day-nav a.honeymoon-leg:hover, .day-nav a.honeymoon-leg.active {
+    color: var(--honeymoon);
+    border-bottom-color: var(--honeymoon);
+  }
+  .day-nav a.honeymoon-leg:hover .day-num, .day-nav a.honeymoon-leg.active .day-num { color: var(--honeymoon); }
+
+  /* Layout */
+  .container { max-width: 820px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* Leg banner */
+  .leg-banner {
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin: 28px 0 18px;
+    color: white;
+  }
+  .leg-banner.korea { background: linear-gradient(120deg, #be185d 0%, #ec4899 100%); }
+  .leg-banner.china { background: linear-gradient(120deg, #5B4CFF 0%, #8B5CF6 100%); }
+  .leg-banner h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .leg-banner .leg-sub { font-size: 13px; opacity: 0.9; }
+  .draft-flag {
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  /* Day section */
+  .day-section { margin-bottom: 30px; scroll-margin-top: 56px; }
+  .city-section { margin-bottom: 30px; scroll-margin-top: 56px; }
+  .day-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .day-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .day-header .day-sub {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .sleep-badge {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--sleep);
+    background: var(--sleep-light);
+    border-radius: 20px;
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+
+  /* Timeline items */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .cards-grid { display: flex; flex-direction: column; gap: 10px; }
+
+  .item {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: 0 12px;
+    align-items: start;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    border-left: 3px solid transparent;
+    transition: box-shadow 0.15s;
+    scroll-margin-top: 60px;
+  }
+  .item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .item.food { border-left-color: var(--food); }
+  .item.sleep { border-left-color: var(--sleep); }
+  .item.transport { border-left-color: var(--transport); }
+  .item.activity { border-left-color: var(--activity); }
+  .item.honeymoon { border-left-color: var(--honeymoon); }
+
+  .item-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .item.food .item-icon { background: var(--food-light); }
+  .item.sleep .item-icon { background: var(--sleep-light); }
+  .item.transport .item-icon { background: var(--transport-light); }
+  .item.activity .item-icon { background: var(--activity-light); }
+  .item.honeymoon .item-icon { background: var(--honeymoon-light); }
+
+  .item-body { min-width: 0; }
+  .item-time {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .item-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+  .item-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .item-note {
+    font-size: 12px;
+    color: #374151;
+    background: #F9FAFB;
+    border-radius: 6px;
+    padding: 6px 8px;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .item-note.warning {
+    background: #FFFBEB;
+    color: #92400E;
+  }
+
+  .item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  /* Status badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 20px;
+    padding: 3px 9px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge.confirmed { background: #D1FAE5; color: #065F46; }
+  .badge.pending { background: #FEF3C7; color: #92400E; }
+  .badge.open { background: #FEE2E2; color: #991B1B; }
+  .badge.info { background: var(--primary-light); color: #3730A3; }
+  .badge.draft { background: #FCE7F3; color: #9D174D; }
+  .badge.walkin { background: #F3F4F6; color: #374151; }
+  .badge.pick { background: #DCFCE7; color: #166534; }
+
+  /* Divider */
+  .slot-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    padding: 4px 0 4px 4px;
+    margin-top: 6px;
+  }
+
+  /* Trip summary */
+  .summary-bar {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .summary-item { display: flex; flex-direction: column; gap: 2px; }
+  .summary-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .summary-value { font-size: 13px; font-weight: 600; }
+
+  .intro-note {
+    font-size: 12px;
+    color: var(--muted);
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    color: #92400E;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 22px; }
+    .summary-bar { grid-template-columns: 1fr; }
+    .item { grid-template-columns: 32px 1fr; }
+    .item-actions { grid-column: 2; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-label">🇰🇷 Honeymoon + 🇨🇳 Group Trip</div>
+  <h1>Korea + China 2026</h1>
+  <div class="hero-dates">October 1 – 22, 2026 &nbsp;·&nbsp; 3 weeks &nbsp;·&nbsp; Seoul, Chengdu, Beijing, Shanghai</div>
+  <div class="hero-group">
+    <span class="traveler-chip">Joe</span>
+    <span class="traveler-chip">Cami</span>
+    <span class="traveler-chip">Flo</span>
+    <span class="traveler-chip">Emma</span>
+    <span class="traveler-chip">the Kochs</span>
+  </div>
+</div>
+
+<!-- Leg nav -->
+<nav class="day-nav">
+  <a href="#korea" class="honeymoon-leg"><span class="day-num">1–7</span>SEOUL · Oct 💑</a>
+  <a href="#chengdu"><span class="day-num">8</span>CHENGDU · Oct</a>
+  <a href="#beijing"><span class="day-num">12</span>BEIJING · Oct</a>
+  <a href="#shanghai"><span class="day-num">17</span>SHANGHAI · Oct</a>
+  <a href="#logistics"><span class="day-num">✈️</span>FLIGHTS</a>
+</nav>
+
+<div class="container">
+
+  <!-- Summary -->
+  <div class="summary-bar">
+    <div class="summary-item">
+      <span class="summary-label">💑 Oct 1–7</span>
+      <span class="summary-value">Seoul honeymoon</span>
+      <span style="font-size:12px;color:var(--muted)">Joe + Cami only · draft</span>
+    </div>
+    <div class="summary-item">
+      <span class="summary-label">🐼 Oct 8–12</span>
+      <span class="summary-value">Chengdu · 4 nights</span>
+      <span style="font-size:12px;color:var(--muted)">with the group</span>
+    </div>
+    <div class="summary-item">
+      <span class="summary-label">🏯 Oct 12–17</span>
+      <span class="summary-value">Beijing · 5 nights</span>
+      <span style="font-size:12px;color:var(--muted)">Grand Hyatt Beijing</span>
+    </div>
+    <div class="summary-item">
+      <span class="summary-label">🏙️ Oct 17–22</span>
+      <span class="summary-value">Shanghai · 5 nights</span>
+      <span style="font-size:12px;color:var(--muted)">Pullman Jing An</span>
+    </div>
+    <div class="summary-item">
+      <span class="summary-label">✈️ Group outbound</span>
+      <span class="summary-value">LX 188 · ZRH → PVG</span>
+      <span style="font-size:12px;color:var(--muted)">Wed 7 Oct 12:55 → Thu 8 Oct 06:30</span>
+    </div>
+    <div class="summary-item">
+      <span class="summary-label">✈️ Return</span>
+      <span class="summary-value">LX 189 · PVG → ZRH</span>
+      <span style="font-size:12px;color:var(--muted)">Thu 22 Oct 10:45 → 18:15</span>
+    </div>
+  </div>
+
+  <div class="intro-note">
+    Working plan, not all booked. The Seoul honeymoon week (Oct 1 to 7) is a draft for Joe + Cami to refine. The China leg mirrors Flo's group plan at florianrock.github.io/china-trip-2026. Group SWISS flights are booked, the Korea legs still need ticketing.
+  </div>
+
+  <!-- ============================ KOREA ============================ -->
+  <div class="leg-banner korea" id="korea">
+    <h2>🇰🇷 Seoul Honeymoon</h2>
+    <div class="leg-sub">October 1 – 7, 2026 · Joe + Cami · 6 nights in Seoul</div>
+    <div class="draft-flag">Draft itinerary, Joe + Cami to refine, nothing booked yet</div>
+  </div>
+
+  <!-- Day 1 -->
+  <section class="day-section" id="seoul-day-1">
+    <div class="day-header">
+      <h3>Wednesday, October 1</h3>
+      <span class="day-sub">Arrival · settle in</span>
+      <span class="sleep-badge">🏨 Seoul base</span>
+    </div>
+    <div class="timeline">
+      <div class="slot-label">Travel</div>
+      <div class="item transport">
+        <div class="item-icon">✈️</div>
+        <div class="item-body">
+          <div class="item-time">To book</div>
+          <div class="item-name">Fly ZRH to Seoul (ICN)</div>
+          <div class="item-subtitle">Direct SWISS ~11h15, or 1-stop via Doha / Istanbul</div>
+          <div class="item-note">Separate from the group SWISS booking. Open-jaw: into Seoul, out of Shanghai on LX 189.</div>
+        </div>
+        <div class="item-actions"><span class="badge open">To book</span></div>
+      </div>
+      <div class="item honeymoon">
+        <div class="item-icon">🌃</div>
+        <div class="item-body">
+          <div class="item-name">Easy first evening</div>
+          <div class="item-subtitle">Myeongdong street food, or a walk along the Han River at Banpo</div>
+          <div class="item-note">Light first night after the long flight. Korean BBQ near the hotel keeps it simple.</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 2 -->
+  <section class="day-section" id="seoul-day-2">
+    <div class="day-header">
+      <h3>Thursday, October 2</h3>
+      <span class="day-sub">Palaces and old Seoul</span>
+      <span class="sleep-badge">🏨 Seoul base</span>
+    </div>
+    <div class="timeline">
+      <div class="item activity">
+        <div class="item-icon">🏯</div>
+        <div class="item-body">
+          <div class="item-name">Gyeongbokgung Palace</div>
+          <div class="item-subtitle">Main royal palace · changing of the guard at the gate</div>
+          <div class="item-note">Rent a hanbok nearby to skip the entry fee and for the photos. Catch the guard ceremony mid-morning.</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+      <div class="item activity">
+        <div class="item-icon">🏘️</div>
+        <div class="item-body">
+          <div class="item-name">Bukchon Hanok Village</div>
+          <div class="item-subtitle">Traditional hillside lanes between the palaces</div>
+          <div class="item-note">Quiet residential streets of restored hanok houses. Pair with Insadong tea houses and craft shops.</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+      <div class="slot-label">Dinner</div>
+      <div class="item food">
+        <div class="item-icon">🍲</div>
+        <div class="item-body">
+          <div class="item-name">Insadong / Jongno dinner</div>
+          <div class="item-subtitle">Bibimbap, jjigae, or a hanjeongsik set</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 3 -->
+  <section class="day-section" id="seoul-day-3">
+    <div class="day-header">
+      <h3>Friday, October 3</h3>
+      <span class="day-sub">City views and neighbourhoods</span>
+      <span class="sleep-badge">🏨 Seoul base</span>
+    </div>
+    <div class="timeline">
+      <div class="item activity">
+        <div class="item-icon">🗼</div>
+        <div class="item-body">
+          <div class="item-name">N Seoul Tower · Namsan</div>
+          <div class="item-subtitle">Cable car up Namsan for the city panorama</div>
+          <div class="item-note">Best near sunset. Love-lock terrace and an observation deck over the whole city.</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+      <div class="item activity">
+        <div class="item-icon">🛍️</div>
+        <div class="item-body">
+          <div class="item-name">Myeongdong + Dongdaemun</div>
+          <div class="item-subtitle">Shopping, skincare, and the DDP at night</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+      <div class="slot-label">Evening</div>
+      <div class="item food">
+        <div class="item-icon">🍢</div>
+        <div class="item-body">
+          <div class="item-name">Gwangjang Market food stalls</div>
+          <div class="item-subtitle">Bindaetteok mung-bean pancakes, mayak gimbap, live octopus for the brave</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 4 -->
+  <section class="day-section" id="seoul-day-4">
+    <div class="day-header">
+      <h3>Saturday, October 4</h3>
+      <span class="day-sub">DMZ day trip</span>
+      <span class="sleep-badge">🏨 Seoul base</span>
+    </div>
+    <div class="timeline">
+      <div class="item activity">
+        <div class="item-icon">🪖</div>
+        <div class="item-body">
+          <div class="item-name">DMZ guided tour</div>
+          <div class="item-subtitle">Half or full day north of the city</div>
+          <div class="item-note">Book ahead, passports required. Typical stops: 3rd Infiltration Tunnel, Dora Observatory, Imjingak. JSA add-on sells out early.</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+      <div class="slot-label">Evening</div>
+      <div class="item food">
+        <div class="item-icon">🍗</div>
+        <div class="item-body">
+          <div class="item-name">Hongdae night out</div>
+          <div class="item-subtitle">Fried chicken and beer, buskers, young energy</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 5 -->
+  <section class="day-section" id="seoul-day-5">
+    <div class="day-header">
+      <h3>Sunday, October 5</h3>
+      <span class="day-sub">Autumn day trip</span>
+      <span class="sleep-badge">🏨 Seoul base</span>
+    </div>
+    <div class="timeline">
+      <div class="item activity">
+        <div class="item-icon">🍁</div>
+        <div class="item-body">
+          <div class="item-name">Nami Island + Petite France</div>
+          <div class="item-subtitle">Early autumn foliage about 1h15 east of Seoul</div>
+          <div class="item-note">Tree-lined island, ferry crossing, easy day out. Swap for a Bukhansan hike if you want something more active.</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 6 -->
+  <section class="day-section" id="seoul-day-6">
+    <div class="day-header">
+      <h3>Monday, October 6</h3>
+      <span class="day-sub">Modern Seoul</span>
+      <span class="sleep-badge">🏨 Seoul base</span>
+    </div>
+    <div class="timeline">
+      <div class="item activity">
+        <div class="item-icon">🌳</div>
+        <div class="item-body">
+          <div class="item-name">Gangnam + Seonjeongneung, then Itaewon</div>
+          <div class="item-subtitle">Royal tombs in the middle of the modern district, then global food street</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+      <div class="slot-label">Honeymoon dinner</div>
+      <div class="item honeymoon">
+        <div class="item-icon">🥂</div>
+        <div class="item-body">
+          <div class="item-name">Special last-night dinner</div>
+          <div class="item-subtitle">A nice table to mark the honeymoon week</div>
+          <div class="item-note">Pick one to book ahead: Jungsik (modern Korean, 2 Michelin stars) or a hanok fine-dining room. To be chosen by Joe + Cami.</div>
+        </div>
+        <div class="item-actions"><span class="badge open">To pick</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 7 -->
+  <section class="day-section" id="seoul-day-7">
+    <div class="day-header">
+      <h3>Tuesday, October 7</h3>
+      <span class="day-sub">Last morning · onward to China</span>
+      <span class="sleep-badge">✈️ Fly to China</span>
+    </div>
+    <div class="timeline">
+      <div class="item food">
+        <div class="item-icon">☕</div>
+        <div class="item-body">
+          <div class="item-name">Slow morning in Seoul</div>
+          <div class="item-subtitle">Cafe in Seongsu or a last market run</div>
+        </div>
+        <div class="item-actions"><span class="badge draft">Draft</span></div>
+      </div>
+      <div class="item transport">
+        <div class="item-icon">🛫</div>
+        <div class="item-body">
+          <div class="item-time">To book</div>
+          <div class="item-name">Seoul to China, meet the group</div>
+          <div class="item-subtitle">Seoul to Shanghai or Shenzhen, then on to Chengdu by Oct 8</div>
+          <div class="item-note">The group lands in Shanghai on LX 188 on the morning of Oct 8 and flies straight to Chengdu. Joe + Cami connect from Korea to meet them. Flight to be booked.</div>
+        </div>
+        <div class="item-actions"><span class="badge open">To book</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CHINA ============================ -->
+  <div class="leg-banner china">
+    <h2>🇨🇳 China with the group</h2>
+    <div class="leg-sub">October 8 – 22, 2026 · Joe + Cami, Flo + Emma and the Kochs · Chengdu, Beijing, Shanghai</div>
+    <div class="draft-flag">Ported from florianrock.github.io/china-trip-2026 · after Golden Week, no holiday price spike</div>
+  </div>
+
+  <!-- CHENGDU -->
+  <section class="city-section" id="chengdu">
+    <div class="day-header">
+      <h3>🐼 Chengdu</h3>
+      <span class="day-sub">Oct 8 to 12 · 4 nights</span>
+      <span class="sleep-badge">🏨 Mercure Chengdu Huaxi</span>
+    </div>
+    <div class="cards-grid">
+
+      <div class="slot-label">Stay</div>
+      <div class="item sleep" id="hotel-chengdu">
+        <div class="item-icon">🏨</div>
+        <div class="item-body">
+          <div class="item-name">Mercure Chengdu Huaxi</div>
+          <div class="item-subtitle">Our pick · about CHF 50 per night · brand new (opened Aug 2025)</div>
+          <div class="item-note">Walk to Jinli Street and Wuhou Temple. Clean and modern, saves roughly CHF 320 to 380 a room over the stay. Splurge alternative: Grand Hyatt Chengdu on Taikoo Li.</div>
+        </div>
+        <div class="item-actions"><span class="badge pick">Our pick</span></div>
+      </div>
+
+      <div class="slot-label">Activities</div>
+      <div class="item activity" id="activity-pandas">
+        <div class="item-icon">🐼</div>
+        <div class="item-body">
+          <div class="item-name">Giant Panda Baby Zone</div>
+          <div class="item-subtitle">Chengdu Research Base</div>
+          <div class="item-note">Meet the world's most adorable cubs up close in their bamboo paradise. Go at opening time when the pandas are most active.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+
+      <div class="slot-label">Food</div>
+      <div class="item food" id="food-hotpot">
+        <div class="item-icon">🌶️</div>
+        <div class="item-body">
+          <div class="item-name">Authentic Sichuan Hotpot</div>
+          <div class="item-subtitle">Chengdu's soul food</div>
+          <div class="item-note">A bubbling cauldron of numbing spices, fresh meats and vegetables, best shared with everyone.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+      <div class="item food" id="food-mapotofu">
+        <div class="item-icon">🍲</div>
+        <div class="item-body">
+          <div class="item-name">Mapo Tofu at Chen's</div>
+          <div class="item-subtitle">The original recipe since 1862</div>
+          <div class="item-note">Silken tofu in scorching mala sauce, eaten at the restaurant that invented it.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+      <div class="item food" id="food-wagyu">
+        <div class="item-icon">🥩</div>
+        <div class="item-body">
+          <div class="item-name">Wagyu Hotpot in Wuhou</div>
+          <div class="item-subtitle">Michelin selected</div>
+          <div class="item-note">Australian M9+ wagyu shoulder cooked tableside in beef-tallow Sichuan broth, 5 minutes from the Wuhou Temple.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BEIJING -->
+  <section class="city-section" id="beijing">
+    <div class="day-header">
+      <h3>🏯 Beijing</h3>
+      <span class="day-sub">Oct 12 to 17 · 5 nights</span>
+      <span class="sleep-badge">🏨 Grand Hyatt Beijing</span>
+    </div>
+    <div class="cards-grid">
+
+      <div class="slot-label">Stay</div>
+      <div class="item sleep" id="hotel-beijing">
+        <div class="item-icon">🏨</div>
+        <div class="item-body">
+          <div class="item-name">Grand Hyatt Beijing</div>
+          <div class="item-subtitle">Our pick · about CHF 115 to 120 per night · Wangfujing</div>
+          <div class="item-note">Walk to the Forbidden City, matches Grand Hyatt Chengdu for points, same price as the Sofitel. Alternatives: Sofitel Beijing Central, or the Four Seasons kids suite if money is fake.</div>
+        </div>
+        <div class="item-actions"><span class="badge pick">Our pick</span></div>
+      </div>
+
+      <div class="slot-label">Activities</div>
+      <div class="item activity" id="activity-forbidden">
+        <div class="item-icon">🏯</div>
+        <div class="item-body">
+          <div class="item-name">The Forbidden City</div>
+          <div class="item-subtitle">World's largest palace complex</div>
+          <div class="item-note">Walk through 600 years of imperial history across 180 acres of golden-roofed halls.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-wall">
+        <div class="item-icon">🧱</div>
+        <div class="item-body">
+          <div class="item-name">The Great Wall</div>
+          <div class="item-subtitle">Mutianyu section, less crowded</div>
+          <div class="item-note">Stand atop one of humanity's greatest achievements, ancient stone snaking over wild mountain ridges.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-temple">
+        <div class="item-icon">🛕</div>
+        <div class="item-body">
+          <div class="item-name">Temple of Heaven</div>
+          <div class="item-subtitle">Blue-roofed masterpiece</div>
+          <div class="item-note">Where emperors prayed for harvests, and where locals do tai chi at dawn every morning.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-summerpalace">
+        <div class="item-icon">⛩️</div>
+        <div class="item-body">
+          <div class="item-name">Summer Palace</div>
+          <div class="item-subtitle">290 hectares of imperial lakes</div>
+          <div class="item-note">Willow-lined corridors and marble bridges, Beijing's most romantic escape, missed by most tourists.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-hutong">
+        <div class="item-icon">🛺</div>
+        <div class="item-body">
+          <div class="item-name">Hutong Neighbourhood Tour</div>
+          <div class="item-subtitle">Ancient alleyways</div>
+          <div class="item-note">Rickshaws, jianbing street crepes, courtyard homes and rooftop views of the Drum Tower.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+
+      <div class="slot-label">Food</div>
+      <div class="item food" id="food-duck">
+        <div class="item-icon">🦆</div>
+        <div class="item-body">
+          <div class="item-name">Peking Duck at Da Dong</div>
+          <div class="item-subtitle">The dish Beijing invented</div>
+          <div class="item-note">Crackling lacquered skin, tableside carving, gossamer pancakes. The only Peking Duck that matters.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+      <div class="item food" id="food-sijimingfu">
+        <div class="item-icon">🏮</div>
+        <div class="item-body">
+          <div class="item-name">Sijimingfu, Imperial Duck</div>
+          <div class="item-subtitle">Qing dynasty courtyard by the Forbidden City</div>
+          <div class="item-note">Four generations of family recipe, hickory smoke ovens, a 108-slice carving ceremony.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+      <div class="item food" id="food-manhengji">
+        <div class="item-icon">🍲</div>
+        <div class="item-body">
+          <div class="item-name">Manhengji, Instant Boiled Mutton</div>
+          <div class="item-subtitle">Legendary copper hot pot</div>
+          <div class="item-note">Paper-thin Inner Mongolian lamb, legendary sesame dipping sauce, old-school Beijing hospitality.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+      <div class="item food" id="food-skewers">
+        <div class="item-icon">🍢</div>
+        <div class="item-body">
+          <div class="item-name">Mutton Skewers</div>
+          <div class="item-subtitle">Hulunbuir grassland lamb</div>
+          <div class="item-note">Beijing's most obsessive lamb skewer chain on a rotating smokeless grill. The Haidilao of BBQ.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SHANGHAI -->
+  <section class="city-section" id="shanghai">
+    <div class="day-header">
+      <h3>🏙️ Shanghai</h3>
+      <span class="day-sub">Oct 17 to 22 · 5 nights</span>
+      <span class="sleep-badge">🏨 Pullman Jing An</span>
+    </div>
+    <div class="cards-grid">
+
+      <div class="slot-label">Getting there</div>
+      <div class="item transport" id="activity-train">
+        <div class="item-icon">🚄</div>
+        <div class="item-body">
+          <div class="item-name">Bullet Train, Business Class</div>
+          <div class="item-subtitle">Beijing to Shanghai in 4.5h at 350 km/h</div>
+          <div class="item-note">Lie-flat seats, meal service, panoramic views. Better than flying in every way.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Transport</span></div>
+      </div>
+
+      <div class="slot-label">Stay</div>
+      <div class="item sleep" id="hotel-shanghai">
+        <div class="item-icon">🏨</div>
+        <div class="item-body">
+          <div class="item-name">Pullman Jing An</div>
+          <div class="item-subtitle">Our pick · about CHF 90 per night · central Jing'an</div>
+          <div class="item-note">Top metro connection, best value in Shanghai, about half the cost of the Hyatt on the Bund. Splurge alternative: Hyatt on the Bund for the river and skyline view.</div>
+        </div>
+        <div class="item-actions"><span class="badge pick">Our pick</span></div>
+      </div>
+
+      <div class="slot-label">Activities</div>
+      <div class="item activity" id="activity-bund">
+        <div class="item-icon">🌆</div>
+        <div class="item-body">
+          <div class="item-name">The Bund Waterfront</div>
+          <div class="item-subtitle">Shanghai's most iconic panorama</div>
+          <div class="item-note">A mile-long promenade of colonial grandeur facing the futuristic Pudong skyline.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-yugarden">
+        <div class="item-icon">🏞️</div>
+        <div class="item-body">
+          <div class="item-name">Yu Garden and Old City</div>
+          <div class="item-subtitle">16th-century classical garden</div>
+          <div class="item-note">Moon gates, koi ponds and dragon walls, plus the original soup dumpling teahouse on the lotus pond.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-tower">
+        <div class="item-icon">🌃</div>
+        <div class="item-body">
+          <div class="item-name">Shanghai Tower, Floor 118</div>
+          <div class="item-subtitle">World's 2nd tallest building, 632m up</div>
+          <div class="item-note">Above the clouds, looking down on the whole city and out to the East China Sea.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-frenchconcession">
+        <div class="item-icon">🌳</div>
+        <div class="item-body">
+          <div class="item-name">The French Concession</div>
+          <div class="item-subtitle">Tree-lined Art Deco streets</div>
+          <div class="item-note">Independent cafes, Xintiandi and Tianzifang. The neighbourhood that makes you want to move to Shanghai.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-rivercruise">
+        <div class="item-icon">🛳️</div>
+        <div class="item-body">
+          <div class="item-name">Huangpu River Night Cruise</div>
+          <div class="item-subtitle">Both skylines from the water at night</div>
+          <div class="item-note">The Bund and Pudong glowing, reflections on the river. The best single view in Shanghai.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-zhujiajiao">
+        <div class="item-icon">🚣</div>
+        <div class="item-body">
+          <div class="item-name">Zhujiajiao Water Town</div>
+          <div class="item-subtitle">Ming dynasty canal town 30 km out</div>
+          <div class="item-note">Gondolas, 36 stone bridges and zero skyscrapers.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-disneyland">
+        <div class="item-icon">🏰</div>
+        <div class="item-body">
+          <div class="item-name">Shanghai Disneyland</div>
+          <div class="item-subtitle">Newest, most spectacular Disney park on earth</div>
+          <div class="item-note">TRON coaster, the world's largest castle, a fireworks show over the moat. One for the kids.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+      <div class="item activity" id="activity-legoland">
+        <div class="item-icon">🧱</div>
+        <div class="item-body">
+          <div class="item-name">Shanghai LEGOLAND Resort</div>
+          <div class="item-subtitle">World's largest LEGOLAND, opened July 2025</div>
+          <div class="item-note">Eight themed lands, MINILAND China in millions of bricks, rides and a themed hotel. A full day for the kids.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Activity</span></div>
+      </div>
+
+      <div class="slot-label">Food</div>
+      <div class="item food" id="food-dimsum">
+        <div class="item-icon">🥟</div>
+        <div class="item-body">
+          <div class="item-name">Nanxiang Xiaolongbao</div>
+          <div class="item-subtitle">The original 1900 soup dumpling house in Yu Garden</div>
+          <div class="item-note">18 hand-pleated folds, scalding broth inside. The benchmark every other dumpling is judged against.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+      <div class="item food" id="food-shanghainese">
+        <div class="item-icon">🥢</div>
+        <div class="item-body">
+          <div class="item-name">Shanghainese Classics</div>
+          <div class="item-subtitle">Jesse Restaurant</div>
+          <div class="item-note">Hong shao rou braised pork belly, hairy crab in peak October season, drunken chicken.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+      <div class="item food" id="food-panfried">
+        <div class="item-icon">🥠</div>
+        <div class="item-body">
+          <div class="item-name">Da Hu Chun, Michelin Pan-fried Buns</div>
+          <div class="item-subtitle">Shanghai's iconic shengjian bao since 1932</div>
+          <div class="item-note">Golden crackling bottoms, soup inside, straight from cast-iron skillets. Michelin Bib Gourmand for under CHF 3 on Sichuan Middle Road.</div>
+        </div>
+        <div class="item-actions"><span class="badge info">Food</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================ LOGISTICS ============================ -->
+  <section class="city-section" id="logistics">
+    <div class="day-header">
+      <h3>✈️ Flights and logistics</h3>
+      <span class="day-sub">What's booked, what's open</span>
+    </div>
+    <div class="cards-grid">
+
+      <div class="slot-label">Booked</div>
+      <div class="item transport">
+        <div class="item-icon">🛫</div>
+        <div class="item-body">
+          <div class="item-time">Wed 7 Oct · 12:55 → Thu 8 Oct 06:30</div>
+          <div class="item-name">LX 188 · ZRH → Shanghai Pudong (PVG)</div>
+          <div class="item-subtitle">SWISS · nonstop · Airbus A350 · group outbound</div>
+          <div class="item-note">The group flies Zurich to Shanghai, then straight on to Chengdu on Oct 8.</div>
+        </div>
+        <div class="item-actions"><span class="badge confirmed">Booked</span></div>
+      </div>
+      <div class="item transport">
+        <div class="item-icon">🛬</div>
+        <div class="item-body">
+          <div class="item-time">Thu 22 Oct · 10:45 → 18:15</div>
+          <div class="item-name">LX 189 · Shanghai Pudong (PVG) → ZRH</div>
+          <div class="item-subtitle">SWISS · nonstop · Airbus A350 · return for everyone</div>
+        </div>
+        <div class="item-actions"><span class="badge confirmed">Booked</span></div>
+      </div>
+
+      <div class="slot-label">To book (Joe + Cami honeymoon legs)</div>
+      <div class="item transport">
+        <div class="item-icon">✈️</div>
+        <div class="item-body">
+          <div class="item-name">ZRH → Seoul (ICN)</div>
+          <div class="item-subtitle">Around Oct 1 · direct SWISS ~11h15, or 1-stop</div>
+          <div class="item-note">Open-jaw with the return on LX 189 out of Shanghai. Buy as flexible economy.</div>
+        </div>
+        <div class="item-actions"><span class="badge open">To book</span></div>
+      </div>
+      <div class="item transport">
+        <div class="item-icon">✈️</div>
+        <div class="item-body">
+          <div class="item-name">Seoul → China (Oct 7 to 8)</div>
+          <div class="item-subtitle">Seoul to Shanghai or Shenzhen, then on to Chengdu to meet the group</div>
+          <div class="item-note">A Korea to Shenzhen morning flight exists but is not cheap. Book domestic China legs on miles or local apps, which run far cheaper than the official sites.</div>
+        </div>
+        <div class="item-actions"><span class="badge open">To book</span></div>
+      </div>
+
+      <div class="slot-label">Good to know</div>
+      <div class="item transport">
+        <div class="item-icon">🪪</div>
+        <div class="item-body">
+          <div class="item-name">Visas and registration</div>
+          <div class="item-subtitle">Korea visa-free for Swiss and German citizens · China tourist visa required</div>
+          <div class="item-note">Start the China visa about a month ahead. Foreigners staying outside hotels in China must register with the local police.</div>
+        </div>
+        <div class="item-actions"></div>
+      </div>
+      <div class="item transport">
+        <div class="item-icon">🏨</div>
+        <div class="item-body">
+          <div class="item-name">Hotels</div>
+          <div class="item-subtitle">Each family books its own rooms, kept refundable</div>
+          <div class="item-note">Shortlist: Pullman Jing An (Shanghai), Grand Hyatt Beijing, Mercure Chengdu Huaxi. Hyatt and Accor staff discounts apply.</div>
+        </div>
+        <div class="item-actions"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer legend -->
+  <div style="margin-top:32px;padding-top:16px;border-top:1px solid var(--border);display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);">
+    <span><span class="badge confirmed" style="font-size:10px">Booked</span> Reservation locked</span>
+    <span><span class="badge draft" style="font-size:10px">Draft</span> Honeymoon idea, to refine</span>
+    <span><span class="badge open" style="font-size:10px">To book</span> Still needs booking</span>
+    <span><span class="badge pick" style="font-size:10px">Our pick</span> Group hotel choice</span>
+  </div>
+  <div style="margin-top:12px;font-size:11px;color:#9CA3AF;">Seoul times KST, China times CST, flight times local · clawd trip planner · China leg mirrors florianrock.github.io/china-trip-2026</div>
+
+</div>
+
+<script>
+  // Scrollspy for leg nav
+  const sections = document.querySelectorAll('.city-section, .leg-banner');
+  const links = document.querySelectorAll('.day-nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        if (!id) return;
+        links.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
