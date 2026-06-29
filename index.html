@@ -81,6 +81,45 @@
     font-size: 12px;
     font-weight: 500;
   }
+  .hero-share {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .hero-share .share-label {
+    opacity: 0.7;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  .hero-share .share-pill {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .hero-share .share-pill:hover {
+    background: rgba(255,255,255,0.3);
+  }
+  .hero-share .share-alt {
+    opacity: 0.7;
+    font-size: 11px;
+  }
+  .hero-share .share-alt a {
+    color: white;
+    opacity: 0.85;
+    text-decoration: underline;
+  }
 
   /* Leg nav */
   .day-nav {
@@ -348,6 +387,11 @@
     <span class="traveler-chip">Flo</span>
     <span class="traveler-chip">Emma</span>
     <span class="traveler-chip">the Kochs</span>
+  </div>
+  <div class="hero-share">
+    <span class="share-label">Share</span>
+    <a class="share-pill" href="https://gojoe.run/kc">gojoe.run/kc</a>
+    <span class="share-alt">or <a href="https://gojoe.run/korea-china">gojoe.run/korea-china</a></span>
   </div>
 </div>
 
